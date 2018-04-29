@@ -179,7 +179,6 @@ Feel free to do more data exploration.
 ## Building KPIs 
 ##### Is there a better way to look into Losses/Expenses/Premium information?
 ```{r}
-
 ```
 
 
