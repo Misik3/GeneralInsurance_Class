@@ -21,7 +21,7 @@ library(dplyr)
 library(ggplot2)
 
 # load data
-dt_KPI_raw <- read.csv("../../data/lesson2_KPI.csv")
+dt_KPI_raw <- read.csv("C:/Users/Misi/Documents/GeneralInsurance_Class/data/lesson2_KPI.csv")
 ```
 
 #### What type of information do we have?
@@ -50,6 +50,8 @@ It is good to know what your data contains and what the column names mean, usual
 
 > Hint: The function summary() might help you to answer this question
 
+dt_KPI_raw %>% summary()
+
 #### Looking for defects in data
 
 ##### Are there any missing values?
@@ -57,12 +59,21 @@ It is good to know what your data contains and what the column names mean, usual
 As a first task, try to find missings for a specific column only
 
 ``` r
-# your code
+dt_KPI_raw %>% summary()
+dt_KPI_raw$Region %>% is.na() %>% as.double %>% sum()
+dt_KPI_raw$Business %>% is.na() %>% as.double %>% sum()
+dt_KPI_raw$Business %>% is.na() %>% sum()
+dt_KPI_raw$Premium %>% is.na() %>% sum()
+
 ```
 
 Can you generalize this process for the whole dataset? &gt; Hint: Can you use any kind of loop here?
 
 ``` r
+dt_KPI_raw %>% filter(is.na(Losses)) %>% head(5)
+dt_KPI_raw %>% filter(is.na(Premium)) %>% head(10)
+dt_KPI_raw[!is.na(dt_KPI_raw$Premium) & !is.na(dt_KPI_raw$Losses) , ]
+dt_KPI_raw[!is.na(dt_KPI_raw$Premium) & dt_KPI_raw$Losses<1000 , ]
 # your code
 ```
 
@@ -120,6 +131,10 @@ dt_KPI_raw %>%
 
 ``` r
 # your code
+dt_KPI_raw %>%
+  group_by(Unit) %>%
+  summarize(Expenses = sum(Expenses, na.rm=TRUE)) %>%
+  arrange(-desc(Expenses))
 ```
 
 ##### Which Business from Unit found in the previous task had the highest Expenses?

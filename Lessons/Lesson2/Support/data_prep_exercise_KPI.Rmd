@@ -12,7 +12,8 @@ library(dplyr)
 library(ggplot2)
 
 # load data
-dt_KPI_raw <- read.csv("../../../data/lesson2_KPI.csv")
+#getwd()
+dt_KPI_raw <- read.csv("C:/Users/Misi/Documents/GeneralInsurance_Class/data/lesson2_KPI.csv")
 ```
 
 #### What type of information do we have?
